@@ -18,7 +18,7 @@ string descriptografa(string mensagem) {
     int tamanhoDoArray = semEspacos.length() / 8;
     string meuArray[tamanhoDoArray];
 
-    // Separa a cada caracteres
+    // Separa a string em strings de 8 bits
     for (int i = 0; i < tamanhoDoArray; i++) {
         string substring;
         for (int j = 0; j < 8; ++j) {
@@ -29,15 +29,15 @@ string descriptografa(string mensagem) {
     }
 
     for (int i = 0; i < tamanhoDoArray; i++) {
-
+        // Inverte a posição dos dois últimos bits
         char temp = meuArray[i][meuArray[i].length() - 1];
         meuArray[i][meuArray[i].length() - 1] = meuArray[i][meuArray[i].length() - 2];
         meuArray[i][meuArray[i].length() - 2] = temp;
-
-        int teste = bitset<8>(meuArray[i]).to_ulong();
-        int inverted_last_two_bits = teste;
-        int swapped_nibbles = ((inverted_last_two_bits & 0b11110000) >> 4) | ((inverted_last_two_bits & 0b00001111) << 4);
-        ret += swapped_nibbles;
+        // Troca os 4 bits com os próximos 4.
+        int decimal = bitset<8>(meuArray[i]).to_ulong();
+        int inverteBits = decimal;
+        int trocaPosicao = ((inverteBits & 0b11110000) >> 4) | ((inverteBits & 0b00001111) << 4);
+        ret += trocaPosicao;
     }
 
     return ret;
