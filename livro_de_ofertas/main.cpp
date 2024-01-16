@@ -64,7 +64,7 @@ void inserir(string posicao) {
             cerr << "Erro de conversão: \nDigite um valor válido." << endl;
         }
     }
-
+    cout << posicao << "," << 0 << "," << novaOferta.valor << "," << novaOferta.quantidade << endl;
     ofertas.push_back(novaOferta);
 }
 void modificar(const string& posicao) {
@@ -110,6 +110,7 @@ void modificar(const string& posicao) {
             it->valor = novoValor;
             it->quantidade = novaQuantidade;
             cout << "Oferta com posição " << posicao << " modificada com sucesso." << endl;
+            cout << posicao << "," << 1 << novoValor << novaQuantidade << endl;
             return;
         }
     }
@@ -125,6 +126,7 @@ void deletar(string posicao) {
         if (it->posicao == posicao) {
             it = ofertas.erase(it); // Após a remoção, `it` é automaticamente ajustado
             cout << "Oferta com ação " << posicao << " deletada com sucesso." << endl;
+            cout << posicao << "," << 0 << "," << it->valor << "," << it->quantidade << endl;
         } else {
             ++it;
         }
