@@ -6,7 +6,7 @@ using namespace std;
 string descriptografa(string mensagem) {
     string semEspacos;
     string ret;
-    
+
     // Remove os espaços
     for (int i = 0; i < mensagem.length(); i++) {
         if (mensagem[i] != ' ') {
@@ -18,7 +18,7 @@ string descriptografa(string mensagem) {
     int tamanhoDoArray = semEspacos.length() / 8;
     string meuArray[tamanhoDoArray];
 
-    // Separa a string em strings de 8 bits
+    // Separa a cada caracteres
     for (int i = 0; i < tamanhoDoArray; i++) {
         string substring;
         for (int j = 0; j < 8; ++j) {
@@ -29,15 +29,17 @@ string descriptografa(string mensagem) {
     }
 
     for (int i = 0; i < tamanhoDoArray; i++) {
-        // Inverte a posição dos dois últimos bits
-        char temp = meuArray[i][meuArray[i].length() - 1];
-        meuArray[i][meuArray[i].length() - 1] = meuArray[i][meuArray[i].length() - 2];
-        meuArray[i][meuArray[i].length() - 2] = temp;
-        // Troca os 4 bits com os próximos 4.
+        // Converte cada byte de binário para inteiro
         int decimal = bitset<8>(meuArray[i]).to_ulong();
-        int inverteBits = decimal;
-        int trocaPosicao = ((inverteBits & 0b11110000) >> 4) | ((inverteBits & 0b00001111) << 4);
-        ret += trocaPosicao;
+
+        // Inverte os dois últimos bits
+        int inverteDoisbits = decimal ^ 0b11;
+
+        // Troca os 4 bits com os próximos 4
+        int inverteQuatrobits = ((inverteDoisbits & 0b11110000) >> 4) | ((inverteDoisbits & 0b00001111) << 4);
+
+        // Adiciona o caractere correspondente à tabela ASCII ao resultado
+        ret += static_cast<char>(inverteQuatrobits);
     }
 
     return ret;
