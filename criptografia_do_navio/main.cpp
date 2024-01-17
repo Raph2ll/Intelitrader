@@ -1,9 +1,11 @@
 #include <iostream>
-#include <list>
 #include <bitset>
+#include <vector>
+
 using namespace std;
 
-string descriptografa(string mensagem) {
+string descriptografa(const string& mensagem) {
+    vector<string> meuArray;
     string semEspacos;
     string ret;
 
@@ -14,23 +16,14 @@ string descriptografa(string mensagem) {
         }
     }
 
-    // Define o tamanho do array
-    int tamanhoDoArray = semEspacos.length() / 8;
-    string meuArray[tamanhoDoArray];
-
-    // Separa a cada caracteres
-    for (int i = 0; i < tamanhoDoArray; i++) {
-        string substring;
-        for (int j = 0; j < 8; ++j) {
-            int contador = i * 8 + j;
-            substring += semEspacos[contador];
-        }
-        meuArray[i] = substring;
+    // Separa a cada 8 caracteres
+    for (size_t i = 0; i < semEspacos.length(); i += 8) {
+        meuArray.push_back(semEspacos.substr(i, 8));
     }
 
-    for (int i = 0; i < tamanhoDoArray; i++) {
+    for (const auto& num : meuArray) {
         // Converte cada byte de binário para inteiro
-        int decimal = bitset<8>(meuArray[i]).to_ulong();
+        int decimal = bitset<8>(num).to_ulong();
 
         // Inverte os dois últimos bits
         int inverteDoisbits = decimal ^ 0b11;
