@@ -71,6 +71,11 @@ void modificar(const string& posicao) {
     double novoValor;
     int novaQuantidade;
 
+    if(!verificarRepeticao(posicao)) {
+        cout << "Oferta com posição " << posicao << " não encontrada." << endl;
+    return;
+    }
+
     cout << "Digite o valor da sua oferta. [0.0]" << endl;
 
     while (true) {
@@ -109,24 +114,24 @@ void modificar(const string& posicao) {
         if (it->posicao == posicao) {
             it->valor = novoValor;
             it->quantidade = novaQuantidade;
-            cout << "Oferta com posição " << posicao << " modificada com sucesso." << endl;
-            cout << posicao << "," << 1 << novoValor << novaQuantidade << endl;
+                cout << "Oferta com posição " << posicao << " modificada com sucesso." << endl;
+                cout << posicao << "," << 1 << "," << novoValor << "," << novaQuantidade << endl;
             return;
         }
     }
 
-    cout << "Oferta com posição " << posicao << " não encontrada." << endl;
+
 }
 void deletar(string posicao) {
     if (!verificarRepeticao(posicao)) {
-        cout << "Valor não encontrado." << endl;
+        cout << "Oferta não encontrada." << endl;
         return; 
     }
     for (auto it = ofertas.begin(); it != ofertas.end();) {
         if (it->posicao == posicao) {
             it = ofertas.erase(it); // Após a remoção, `it` é automaticamente ajustado
             cout << "Oferta com ação " << posicao << " deletada com sucesso." << endl;
-            cout << posicao << "," << 0 << "," << it->valor << "," << it->quantidade << endl;
+            cout << posicao << "," << 2 << "," << it->valor << "," << it->quantidade << endl;
         } else {
             ++it;
         }
@@ -148,6 +153,7 @@ void imprimirOfertas() {
         cout << oferta.posicao << "," << oferta.valor << "," << oferta.quantidade << endl;
     }
 }
+
 int main() {
     cout << "Bem-vindo ao livro de ofertas." << endl;
     
