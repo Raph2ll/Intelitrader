@@ -26,8 +26,3 @@ Criptografia do navio:
 ## KillerCoda
 
 Recomendo executar os códigos utilizando o [KillerCoda](https://killercoda.com/playgrounds/scenario/ubuntu)
-Livro de Ofertas:
-
-```bash
-  g++ livro_de_ofertas/main.cpp -o livroDeOfertas && ./livroDeOfertas
-```
