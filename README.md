@@ -7,7 +7,7 @@ Esse projeto foi desenvolvido para uma vaga de backend.
 Clonando o repositorio
 
 ```bash
-  git@github.com:Raph2ll/Intelitrader.git
+  git clone https://github.com/Raph2ll/Intelitrader.git
 ```
 
 Entre no diretório
