@@ -23,7 +23,9 @@ Criptografia do navio:
 ```bash
   g++ criptografia_do_navio/main.cpp -o criptografiaDoNavio && ./criptografiaDoNavio
 ```
+## KillerCoda
 
+Recomendo executar os códigos utilizando o [KillerCoda](https://killercoda.com/playgrounds/scenario/ubuntu)
 Livro de Ofertas:
 
 ```bash
